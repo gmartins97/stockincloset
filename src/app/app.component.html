@@ -2,11 +2,11 @@
 <ng-container>
   <mat-toolbar color="primary" class="sic-header">
   <mat-toolbar-row>
-    <span><button mat-button><mat-icon>all_inclusive</mat-icon> <b>{{title}}</b></button></span>
+    <span><button mat-button (click)="home()"><mat-icon>all_inclusive</mat-icon> <b>{{title}}</b></button></span>
     <span class="sic-spacer"></span>
     <span>Welcome to {{title}}!</span>
     <span class="sic-spacer"></span>
-    <button mat-button matTooltip="Place a new order" (click)="notImplemented()">
+    <button mat-button matTooltip="Place a new order" (click)="addOrder()">
     <mat-icon class="sic-icon">add_shopping_cart</mat-icon>
     Place New Order
     </button>
@@ -47,7 +47,7 @@
 <mat-toolbar color="primary" class="sic-footer">
 
     <!-- Copyright -->
-    <div>© 2018 ARQSI:
+    <div style="margin:0 auto">© 2018 ARQSI:
       <a target="_blank" href="https://bitbucket.org/gmartins97"> Gonçalo Martins</a>
       <a target="_blank" href="https://bitbucket.org/1160967"> João Dias</a>
     </div>

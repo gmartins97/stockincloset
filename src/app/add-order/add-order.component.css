@@ -1,0 +1,23 @@
+/*@import url('../../css/bootstrap.min.css'); */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  margin:0 auto;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.sic-row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.sic-column
+{
+    display: table-cell;
+}

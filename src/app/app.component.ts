@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-
+import {Router} from '@angular/router';
 @Component({
   selector : 'app-root',
   templateUrl : './app.component.html',
@@ -8,7 +8,9 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'Stock in Closet';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  notImplemented() { alert("Not implemented yet"); }
+  home() { this.router.navigateByUrl('/home'); }
+
+  addOrder() { this.router.navigateByUrl('/orders/add'); }
 }

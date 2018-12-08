@@ -14,6 +14,7 @@ import {
 import {
   AddMaterialDialogComponent
 } from './add-material-dialog/add-material-dialog.component';
+import {AddOrderComponent} from './add-order/add-order.component';
 import {
   AddProductDialogComponent
 } from './add-product-dialog/add-product-dialog.component';
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
   {path : 'categories', component : CategoriesComponent},
   {path : 'products', component : ProductsComponent},
   {path : 'orders', component : OrdersComponent},
+  {path : 'orders/add', component : AddOrderComponent},
   {path : 'home', component : HomeComponent},
   {path : '', redirectTo : '/home', pathMatch : 'full'}
 ];
@@ -63,7 +65,7 @@ const appRoutes: Routes = [
     AddCategoryDialogComponent, AddMaterialDialogComponent, ProductsComponent,
     HomeComponent, EditSurfaceFinishDialogComponent,
     EditMaterialDialogComponent, EditCategoryDialogComponent,
-    AddProductDialogComponent, OrdersComponent
+    AddProductDialogComponent, OrdersComponent, AddOrderComponent
   ],
   imports : [
     BrowserModule, FormsModule, HttpModule, MaterialModule,

@@ -1,0 +1,24 @@
+<h2 style="text-align: center"><b>PLACE A NEW ORDER</b></h2>
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="createOrder()">Confirm</button>
+    </div>
+    <div class="sic-column">
+      <button mat-raised-button (click)="back()">Back</button>
+    </div>
+  </div>
+</div>
