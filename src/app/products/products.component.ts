@@ -35,6 +35,8 @@ export class ProductsComponent implements OnInit {
     this.productDialogRef = this.dialog.open(AddProductDialogComponent);
   }
 
+  editProduct() {}
+
   deleteProduct(id: number) {
     this.productSrv.deleteProduct(id).subscribe(
         prod => {
