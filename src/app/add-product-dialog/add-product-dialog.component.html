@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>Add Product</h1>
+<div class="add-product-dialog-container">
+  <mat-form-field>
+    <input matInput [(ngModel)]="productName" placeholder="Product's name" required>
+  </mat-form-field>
+
+  <h4><b>Discrete Width</b></h4>
+
+<mat-form-field>
+  <input matInput [(ngModel)]="discreteWidth" placeholder="Width">
+</mat-form-field>
+<h4><b>Continuous Width</b></h4>
+<mat-form-field>
+  <input matInput [(ngModel)]="minWidth" placeholder="Min Width">
+</mat-form-field>
+<mat-form-field>
+<input matInput [(ngModel)]="maxWidth" placeholder="Max Width">
+</mat-form-field>
+
+
+  <h4><b>Discrete Height</b></h4>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="discreteHeight" placeholder="Height">
+  </mat-form-field>
+  <h4><b>Continuous Height</b></h4>
+  <mat-form-field>
+    <input matInput [(ngModel)]="minHeight" placeholder="Min Height">
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput [(ngModel)]="maxHeight" placeholder="Max Height">
+  </mat-form-field>
+  <h4><b>Discrete Depth</b></h4>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="discreteDepth" placeholder="Depth">
+  </mat-form-field>
+<h4><b>Continuous Depth</b></h4>
+  <mat-form-field>
+    <input matInput [(ngModel)]="minDepth" placeholder="Min Depth">
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput [(ngModel)]="maxDepth" placeholder="Max Depth">
+  </mat-form-field>
+  <h4><b>Parts</b></h4>
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedPartsNames" placeholder="Parts" multiple required>
+    <mat-option *ngFor="let product of productList" [value]="product.name">{{product.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+  <h4><b>Category</b></h4>
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedCategoryDescription" placeholder="Category" required>
+    <mat-option *ngFor="let category of categoryList" [value]="category.description">{{category.description}}</mat-option>
+  </mat-select>
+</mat-form-field>
+  <h4><b>Materials</b></h4>
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedMaterialsNames" placeholder="Materials" multiple required>
+    <mat-option *ngFor="let material of materialList" [value]="material.name">{{material.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+  <h4><b>Occupancy</b></h4>
+<mat-form-field>
+  <input matInput [(ngModel)]="minOccupancyPerc" placeholder="Min Occupancy %" required>
+</mat-form-field>
+<mat-form-field>
+  <input matInput [(ngModel)]="maxOccupancyPerc" placeholder="Max Occupancy %" required>
+</mat-form-field>
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="createProduct()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

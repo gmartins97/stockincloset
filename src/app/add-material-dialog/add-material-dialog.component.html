@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Add Material</h1>
+<div class="add-material-dialog-container">
+  <mat-form-field>
+    <input matInput [(ngModel)]="materialName" placeholder="Material's name" required>
+  </mat-form-field>
+
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedSurfaceFinishesNames" placeholder="Surface Finishes" multiple required>
+    <mat-option *ngFor="let surfaceFinish of surfaceFinishList" [value]="surfaceFinish.name">{{surfaceFinish.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="createMaterial()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

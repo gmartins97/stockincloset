@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Add Category</h1>
+<div class="add-category-dialog-container">
+  <mat-form-field>
+    <input matInput [(ngModel)]="categoryDescription" placeholder="Category's description" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectedParentCategoryDescription" placeholder="Parent Category">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let category of categories" [value]="category.description">
+      {{category.description}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="createCategory()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

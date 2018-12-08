@@ -1,0 +1,21 @@
+@import url('../../css/bootstrap.min.css');
+.example-container {
+  height: 425px;
+  overflow: auto;
+}
+
+.sic-row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.sic-column
+{
+    display: table-cell;
+}
+
+table {
+  width: 100%;
+}

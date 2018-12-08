@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Edit Surface Finish</h1>
+<div class="edit-surface-finish-dialog-container">
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedSurfaceFinishId" placeholder="Surface Finishes" required>
+    <mat-option *ngFor="let surfaceFinish of surfaceFinishList" [value]="surfaceFinish.id">{{surfaceFinish.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="surfaceFinishName" placeholder="New surface finish name" required>
+  </mat-form-field>
+
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="updateSurfaceFinish()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

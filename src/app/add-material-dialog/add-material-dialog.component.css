@@ -1,0 +1,17 @@
+.add-material-dialog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-material-dialog-container > * {
+  width: 100%;
+}
+
+.sic-row
+{
+    display: table;
+}
+.sic-column
+{
+    display: table-cell;
+}

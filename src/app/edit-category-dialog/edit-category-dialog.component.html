@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Edit Category</h1>
+<div class="edit-category-dialog-container">
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedCategoryId" placeholder="Categories" required>
+    <mat-option *ngFor="let category of categoryList" [value]="category.id">{{category.description}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="categoryDescription" placeholder="New category description" required>
+  </mat-form-field>
+
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedParentCategoryDescription" placeholder="New parent category">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let category of categoryList" [value]="category.description">{{category.description}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="updateCategory()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

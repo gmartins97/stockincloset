@@ -1,0 +1,17 @@
+.add-surface-finish-dialog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-surface-finish-dialog-container > * {
+  width: 100%;
+}
+
+.sic-row
+{
+    display: table;
+}
+.sic-column
+{
+    display: table-cell;
+}

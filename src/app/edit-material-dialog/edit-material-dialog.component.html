@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Edit Material</h1>
+<div class="edit-material-dialog-container">
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedMaterialId" placeholder="Materials" required>
+    <mat-option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="materialName" placeholder="New material name" required>
+  </mat-form-field>
+
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedSurfaceFinishesNames" placeholder="New surface finishes" multiple required>
+    <mat-option *ngFor="let material of materialList; let in = index" [value]="material.surfaceFinishNames[in]">{{material.surfaceFinishNames[in]}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="updateMaterial()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

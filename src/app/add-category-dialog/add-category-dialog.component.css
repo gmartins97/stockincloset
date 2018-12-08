@@ -1,0 +1,17 @@
+.add-category-dialog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-category-dialog-container > * {
+  width: 100%;
+}
+
+.sic-row
+{
+    display: table;
+}
+.sic-column
+{
+    display: table-cell;
+}

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add Surface Finish</h1>
+<div class="add-surface-finish-dialog-container">
+  <mat-form-field>
+    <input matInput [(ngModel)]="surfaceFinishName" placeholder="Surface Finish's name" required>
+  </mat-form-field>
+
+  <div class="sic-row">
+    <div class="sic-column">
+      <button mat-raised-button color="primary" (click)="createSurfaceFinish()">OK</button>
+    </div>
+    <div class="sic-column">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</div>

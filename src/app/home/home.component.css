@@ -1,0 +1,12 @@
+@import url('../../css/bootstrap.min.css');
+@import url('../../css/mdb.min.css');
+.sic-row
+{
+    display: table;
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.sic-column
+{
+    display: table-cell;
+}

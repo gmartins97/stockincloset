@@ -1,0 +1,24 @@
+.add-product-dialog-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 425px;
+  min-width: 400px;
+}
+
+.add-product-dialog-container > * {
+  width: 100%;
+}
+
+.sic-row
+{
+    display: table;
+}
+
+.sic-column
+{
+    display: table-cell;
+}
+
+mat-radio-button {
+  padding-right: 16px;
+}
