@@ -9,7 +9,7 @@ import {GenericService} from './generic.service';
 
 @Injectable({providedIn : 'root'})
 export class ProductService extends GenericService {
-  constructor(httpClient: HttpClient) { super(httpClient, "Product"); }
+  constructor(httpClient: HttpClient) { super(httpClient, "Product", 0); }
 
   getProducts(): Observable<any> { return super.getAll(); }
 

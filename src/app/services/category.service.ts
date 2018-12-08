@@ -5,7 +5,7 @@ import {GenericService} from './generic.service';
 
 @Injectable({providedIn : 'root'})
 export class CategoryService extends GenericService {
-  constructor(httpClient: HttpClient) { super(httpClient, "Category"); }
+  constructor(httpClient: HttpClient) { super(httpClient, "Category", 0); }
 
   getCategories(): Observable<any> { return super.getAll(); }
 

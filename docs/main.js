@@ -2866,7 +2866,7 @@ module.exports = "/*@import url('../../css/bootstrap.min.css'); */\r\n.example-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 style=\"text-align: center\"><b>PLACE A NEW ORDER</b></h2>\n<div class=\"example-container\">\n  <mat-form-field>\n    <input matInput placeholder=\"Input\">\n  </mat-form-field>\n\n  <mat-form-field>\n    <textarea matInput placeholder=\"Textarea\"></textarea>\n  </mat-form-field>\n\n  <mat-form-field>\n    <mat-select placeholder=\"Select\">\n      <mat-option value=\"option\">Option</mat-option>\n    </mat-select>\n  </mat-form-field>\n  <div class=\"sic-row\">\n    <div class=\"sic-column\">\n      <button mat-raised-button color=\"primary\" (click)=\"createOrder()\">Confirm</button>\n    </div>\n    <div class=\"sic-column\">\n      <button mat-raised-button (click)=\"back()\">Back</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<h2 style=\"text-align: center\"><b>PLACE A NEW ORDER</b></h2>\n<div class=\"example-container\">\n  <mat-form-field>\n  <mat-select [(ngModel)]=\"selectedProduct\" placeholder=\"Choose product\" required>\n    <mat-option *ngFor=\"let product of productList\" [value]=\"product\">{{product.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select [(ngModel)]=\"selectedMaterialName\" placeholder=\"Choose material\" required>\n    <mat-option *ngFor=\"let materialName of selectedProduct.materialNames\" [value]=\"materialName\">{{materialName}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select [(ngModel)]=\"selectedSurfaceFinish\" placeholder=\"Choose surface finish\" required>\n    <mat-option *ngFor=\"let surfaceFinish of surfaceFinishList\" [value]=\"surfaceFinish\">{{surfaceFinish.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenWidth\" placeholder=\"Width\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenHeight\" placeholder=\"Height\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenDepth\" placeholder=\"Depth\" required>\n  </mat-form-field>\n\n  <div class=\"sic-row\">\n    <div class=\"sic-column\">\n      <button mat-raised-button color=\"primary\" (click)=\"createOrder()\">Confirm</button>\n    </div>\n    <div class=\"sic-column\">\n      <button mat-raised-button (click)=\"back()\">Back</button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2882,15 +2882,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddOrderComponent", function() { return AddOrderComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_material_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/material.service */ "./src/app/services/material.service.ts");
+/* harmony import */ var _services_order_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/order.service */ "./src/app/services/order.service.ts");
+/* harmony import */ var _services_product_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/product.service */ "./src/app/services/product.service.ts");
+/* harmony import */ var _services_surface_finish_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/surface-finish.service */ "./src/app/services/surface-finish.service.ts");
+
+
+
+
+
 
 
 
 var AddOrderComponent = /** @class */ (function () {
-    function AddOrderComponent(router) {
+    function AddOrderComponent(router, productSrv, materialSrv, surfaceFinishSrv, orderSrv, snackBar) {
         this.router = router;
+        this.productSrv = productSrv;
+        this.materialSrv = materialSrv;
+        this.surfaceFinishSrv = surfaceFinishSrv;
+        this.orderSrv = orderSrv;
+        this.snackBar = snackBar;
+        this.chosenWidth = 1;
+        this.chosenHeight = 1;
+        this.chosenDepth = 1;
     }
-    AddOrderComponent.prototype.ngOnInit = function () { };
+    AddOrderComponent.prototype.ngOnInit = function () {
+        this.getProducts();
+        this.getSurfaceFinishes();
+    };
+    AddOrderComponent.prototype.getProducts = function () {
+        var _this = this;
+        this.productSrv.getProducts().subscribe(function (prods) {
+            _this.productList = prods;
+            _this.selectedProduct = _this.productList[0];
+            _this.selectedMaterialName = _this.selectedProduct.materialNames[0];
+        });
+    };
+    AddOrderComponent.prototype.getSurfaceFinishes = function () {
+        var _this = this;
+        this.surfaceFinishSrv.getSurfaceFinishes().subscribe(function (sfs) {
+            _this.surfaceFinishList = sfs;
+            _this.selectedSurfaceFinish = _this.surfaceFinishList[0];
+        });
+    };
+    AddOrderComponent.prototype.createOrder = function () {
+        var _this = this;
+        var item = {
+            name: this.selectedProduct.name,
+            material: this.selectedMaterialName,
+            surfacefinish: this.selectedSurfaceFinish.name,
+            width: this.chosenWidth,
+            height: this.chosenHeight,
+            depth: this.chosenDepth,
+            items: []
+        };
+        var items = [item];
+        var order = { items: items };
+        this.orderSrv.createOrder(order).subscribe(function (order) {
+            _this.snackBar.open("Order has been placed successfully!", "", { duration: 2000 });
+        }, function (error) {
+            _this.snackBar.open("An error occurred : " + error.error, "", { duration: 3000 });
+        });
+    };
     AddOrderComponent.prototype.back = function () { this.router.navigateByUrl('/orders'); };
     AddOrderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2898,7 +2953,10 @@ var AddOrderComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-order.component.html */ "./src/app/add-order/add-order.component.html"),
             styles: [__webpack_require__(/*! ./add-order.component.css */ "./src/app/add-order/add-order.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _services_product_service__WEBPACK_IMPORTED_MODULE_6__["ProductService"],
+            _services_material_service__WEBPACK_IMPORTED_MODULE_4__["MaterialService"],
+            _services_surface_finish_service__WEBPACK_IMPORTED_MODULE_7__["SurfaceFinishService"],
+            _services_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
     ], AddOrderComponent);
     return AddOrderComponent;
 }());
@@ -4116,7 +4174,7 @@ __webpack_require__.r(__webpack_exports__);
 var CategoryService = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](CategoryService, _super);
     function CategoryService(httpClient) {
-        return _super.call(this, httpClient, "Category") || this;
+        return _super.call(this, httpClient, "Category", 0) || this;
     }
     CategoryService.prototype.getCategories = function () { return _super.prototype.getAll.call(this); };
     CategoryService.prototype.createCategory = function (description, parentCatDesc) {
@@ -4156,28 +4214,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var GenericService = /** @class */ (function () {
-    function GenericService(httpClient, name) {
+    function GenericService(httpClient, name, op) {
         this.httpClient = httpClient;
-        this.CATALOG_API_URL = 'https://stockincloset3dag8.azurewebsites.net/api/';
+        if (op == 0) {
+            this.API_URL = 'https://stockincloset3dag8.azurewebsites.net/api/';
+        }
+        else {
+            this.API_URL = 'https://sic-orders-3da-g8.herokuapp.com/api/';
+        }
         this.name = name;
     }
     GenericService.prototype.getAll = function () {
-        return this.httpClient.get(this.CATALOG_API_URL + this.name)
+        return this.httpClient.get(this.API_URL + this.name)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.extractData));
     };
     GenericService.prototype.create = function (obj) {
-        return this.httpClient.post(this.CATALOG_API_URL + this.name, obj);
+        return this.httpClient.post(this.API_URL + this.name, obj);
     };
     GenericService.prototype.update = function (id, obj) {
-        return this.httpClient.put(this.CATALOG_API_URL + this.name + '/' + id, obj);
+        return this.httpClient.put(this.API_URL + this.name + '/' + id, obj);
     };
     GenericService.prototype.delete = function (id) {
-        return this.httpClient.delete(this.CATALOG_API_URL + this.name + '/' + id);
+        return this.httpClient.delete(this.API_URL + this.name + '/' + id);
     };
     GenericService.prototype.extractData = function (res) { return res || {}; };
     GenericService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], String])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], String, Number])
     ], GenericService);
     return GenericService;
 }());
@@ -4207,7 +4270,7 @@ __webpack_require__.r(__webpack_exports__);
 var MaterialService = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MaterialService, _super);
     function MaterialService(httpClient) {
-        return _super.call(this, httpClient, "Material") || this;
+        return _super.call(this, httpClient, "Material", 0) || this;
     }
     MaterialService.prototype.getMaterials = function () { return _super.prototype.getAll.call(this); };
     MaterialService.prototype.createMaterial = function (materialName, surfaceFinishNames) {
@@ -4222,6 +4285,42 @@ var MaterialService = /** @class */ (function (_super) {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], MaterialService);
     return MaterialService;
+}(_generic_service__WEBPACK_IMPORTED_MODULE_3__["GenericService"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/order.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/order.service.ts ***!
+  \*******************************************/
+/*! exports provided: OrderService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderService", function() { return OrderService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _generic_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./generic.service */ "./src/app/services/generic.service.ts");
+
+
+
+
+var OrderService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](OrderService, _super);
+    function OrderService(httpClient) {
+        return _super.call(this, httpClient, "order", 1) || this;
+    }
+    OrderService.prototype.getOrders = function () { return _super.prototype.getAll.call(this); };
+    OrderService.prototype.createOrder = function (order) { return _super.prototype.create.call(this, order); };
+    OrderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], OrderService);
+    return OrderService;
 }(_generic_service__WEBPACK_IMPORTED_MODULE_3__["GenericService"]));
 
 
@@ -4249,7 +4348,7 @@ __webpack_require__.r(__webpack_exports__);
 var ProductService = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ProductService, _super);
     function ProductService(httpClient) {
-        return _super.call(this, httpClient, "Product") || this;
+        return _super.call(this, httpClient, "Product", 0) || this;
     }
     ProductService.prototype.getProducts = function () { return _super.prototype.getAll.call(this); };
     ProductService.prototype.createProduct = function (name, categoryDescription, dimensions, parts, materialNames, minOccupancyPercentage, maxOccupancyPercentage) {
@@ -4297,7 +4396,7 @@ __webpack_require__.r(__webpack_exports__);
 var SurfaceFinishService = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](SurfaceFinishService, _super);
     function SurfaceFinishService(httpClient) {
-        return _super.call(this, httpClient, "SurfaceFinish") || this;
+        return _super.call(this, httpClient, "SurfaceFinish", 0) || this;
     }
     SurfaceFinishService.prototype.getSurfaceFinishes = function () { return _super.prototype.getAll.call(this); };
     SurfaceFinishService.prototype.createSurfaceFinish = function (surfaceFinishName) {

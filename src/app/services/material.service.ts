@@ -5,7 +5,7 @@ import {GenericService} from './generic.service';
 
 @Injectable({providedIn : 'root'})
 export class MaterialService extends GenericService {
-  constructor(httpClient: HttpClient) { super(httpClient, "Material"); }
+  constructor(httpClient: HttpClient) { super(httpClient, "Material", 0); }
 
   getMaterials(): Observable<any> { return super.getAll(); }
 

@@ -9,6 +9,6 @@ export class Item {
 }
 
 export class Order {
-  _id: string;
+  _id?: string;
   items: Item[];
 }

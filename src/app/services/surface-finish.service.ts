@@ -6,7 +6,7 @@ import {GenericService} from './generic.service';
 @Injectable({providedIn : 'root'})
 export class SurfaceFinishService extends GenericService {
 
-  constructor(httpClient: HttpClient) { super(httpClient, "SurfaceFinish"); }
+  constructor(httpClient: HttpClient) { super(httpClient, "SurfaceFinish", 0); }
 
   getSurfaceFinishes(): Observable<any> { return super.getAll(); }
 

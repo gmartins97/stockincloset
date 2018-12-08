@@ -5,29 +5,33 @@ import {map} from 'rxjs/operators';
 
 @Injectable({providedIn : 'root'})
 export class GenericService {
-  private CATALOG_API_URL = 'https://stockincloset3dag8.azurewebsites.net/api/';
+  private API_URL: string;
   name: string;
 
-  constructor(private httpClient: HttpClient, name: string) {
+  constructor(private httpClient: HttpClient, name: string, op: number) {
+    if (op == 0) {
+      this.API_URL = 'https://stockincloset3dag8.azurewebsites.net/api/';
+    } else {
+      this.API_URL = 'https://sic-orders-3da-g8.herokuapp.com/api/';
+    }
     this.name = name;
   }
 
   getAll(): Observable<any> {
-    return this.httpClient.get(this.CATALOG_API_URL + this.name)
+    return this.httpClient.get(this.API_URL + this.name)
         .pipe(map(this.extractData));
   }
 
   create(obj: Object): Observable<any> {
-    return this.httpClient.post(this.CATALOG_API_URL + this.name, obj);
+    return this.httpClient.post(this.API_URL + this.name, obj);
   }
 
-  update(id: number, obj: Object): Observable<any> {
-    return this.httpClient.put(this.CATALOG_API_URL + this.name + '/' + id,
-                               obj);
+  update(id: any, obj: Object): Observable<any> {
+    return this.httpClient.put(this.API_URL + this.name + '/' + id, obj);
   }
 
-  delete(id: number): Observable<any> {
-    return this.httpClient.delete(this.CATALOG_API_URL + this.name + '/' + id);
+  delete(id: any): Observable<any> {
+    return this.httpClient.delete(this.API_URL + this.name + '/' + id);
   }
 
   private extractData(res: Response) { return res || {}; }
