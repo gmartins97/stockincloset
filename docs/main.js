@@ -3129,8 +3129,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./material.module */ "./src/app/material.module.ts");
 /* harmony import */ var _materials_materials_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./materials/materials.component */ "./src/app/materials/materials.component.ts");
-/* harmony import */ var _products_products_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./products/products.component */ "./src/app/products/products.component.ts");
-/* harmony import */ var _surface_finishes_surface_finishes_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./surface-finishes/surface-finishes.component */ "./src/app/surface-finishes/surface-finishes.component.ts");
+/* harmony import */ var _orders_orders_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./orders/orders.component */ "./src/app/orders/orders.component.ts");
+/* harmony import */ var _products_products_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./products/products.component */ "./src/app/products/products.component.ts");
+/* harmony import */ var _surface_finishes_surface_finishes_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./surface-finishes/surface-finishes.component */ "./src/app/surface-finishes/surface-finishes.component.ts");
+
 
 
 
@@ -3158,14 +3160,15 @@ __webpack_require__.r(__webpack_exports__);
 var appRoutes = [
     {
         path: 'surfacefinishes',
-        component: _surface_finishes_surface_finishes_component__WEBPACK_IMPORTED_MODULE_22__["SurfaceFinishesComponent"],
+        component: _surface_finishes_surface_finishes_component__WEBPACK_IMPORTED_MODULE_23__["SurfaceFinishesComponent"],
     },
     {
         path: 'materials',
         component: _materials_materials_component__WEBPACK_IMPORTED_MODULE_20__["MaterialsComponent"],
     },
     { path: 'categories', component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_14__["CategoriesComponent"] },
-    { path: 'products', component: _products_products_component__WEBPACK_IMPORTED_MODULE_21__["ProductsComponent"] },
+    { path: 'products', component: _products_products_component__WEBPACK_IMPORTED_MODULE_22__["ProductsComponent"] },
+    { path: 'orders', component: _orders_orders_component__WEBPACK_IMPORTED_MODULE_21__["OrdersComponent"] },
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_18__["HomeComponent"] },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
@@ -3175,12 +3178,12 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"], _surface_finishes_surface_finishes_component__WEBPACK_IMPORTED_MODULE_22__["SurfaceFinishesComponent"], _categories_categories_component__WEBPACK_IMPORTED_MODULE_14__["CategoriesComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"], _surface_finishes_surface_finishes_component__WEBPACK_IMPORTED_MODULE_23__["SurfaceFinishesComponent"], _categories_categories_component__WEBPACK_IMPORTED_MODULE_14__["CategoriesComponent"],
                 _materials_materials_component__WEBPACK_IMPORTED_MODULE_20__["MaterialsComponent"], _add_surface_finish_dialog_add_surface_finish_dialog_component__WEBPACK_IMPORTED_MODULE_12__["AddSurfaceFinishDialogComponent"],
-                _add_category_dialog_add_category_dialog_component__WEBPACK_IMPORTED_MODULE_9__["AddCategoryDialogComponent"], _add_material_dialog_add_material_dialog_component__WEBPACK_IMPORTED_MODULE_10__["AddMaterialDialogComponent"], _products_products_component__WEBPACK_IMPORTED_MODULE_21__["ProductsComponent"],
+                _add_category_dialog_add_category_dialog_component__WEBPACK_IMPORTED_MODULE_9__["AddCategoryDialogComponent"], _add_material_dialog_add_material_dialog_component__WEBPACK_IMPORTED_MODULE_10__["AddMaterialDialogComponent"], _products_products_component__WEBPACK_IMPORTED_MODULE_22__["ProductsComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_18__["HomeComponent"], _edit_surface_finish_dialog_edit_surface_finish_dialog_component__WEBPACK_IMPORTED_MODULE_17__["EditSurfaceFinishDialogComponent"],
                 _edit_material_dialog_edit_material_dialog_component__WEBPACK_IMPORTED_MODULE_16__["EditMaterialDialogComponent"], _edit_category_dialog_edit_category_dialog_component__WEBPACK_IMPORTED_MODULE_15__["EditCategoryDialogComponent"],
-                _add_product_dialog_add_product_dialog_component__WEBPACK_IMPORTED_MODULE_11__["AddProductDialogComponent"]
+                _add_product_dialog_add_product_dialog_component__WEBPACK_IMPORTED_MODULE_11__["AddProductDialogComponent"], _orders_orders_component__WEBPACK_IMPORTED_MODULE_21__["OrdersComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_http__WEBPACK_IMPORTED_MODULE_4__["HttpModule"], _material_module__WEBPACK_IMPORTED_MODULE_19__["MaterialModule"],
@@ -3754,6 +3757,62 @@ var MaterialsComponent = /** @class */ (function () {
             _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
     ], MaterialsComponent);
     return MaterialsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/orders/orders.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/orders/orders.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy9vcmRlcnMuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/orders/orders.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/orders/orders.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  orders works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/orders/orders.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/orders/orders.component.ts ***!
+  \********************************************/
+/*! exports provided: OrdersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersComponent", function() { return OrdersComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var OrdersComponent = /** @class */ (function () {
+    function OrdersComponent() {
+    }
+    OrdersComponent.prototype.ngOnInit = function () {
+    };
+    OrdersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-orders',
+            template: __webpack_require__(/*! ./orders.component.html */ "./src/app/orders/orders.component.html"),
+            styles: [__webpack_require__(/*! ./orders.component.css */ "./src/app/orders/orders.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], OrdersComponent);
+    return OrdersComponent;
 }());
 
 
