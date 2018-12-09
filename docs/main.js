@@ -3405,7 +3405,12 @@ var CategoriesComponent = /** @class */ (function () {
     CategoriesComponent.prototype.ngOnInit = function () { this.getCategories(); };
     CategoriesComponent.prototype.getCategories = function () {
         var _this = this;
-        this.categorySrv.getCategories().subscribe(function (data) { _this.dataSource = data; });
+        this.categorySrv.getCategories().subscribe(function (data) { _this.dataSource = data; }, function (error) {
+            _this.snackBar.open("An error occurred while trying to categories: " +
+                error.error, "", {
+                duration: 2000,
+            });
+        });
     };
     CategoriesComponent.prototype.addCategory = function () {
         this.categoryDialogRef = this.dialog.open(_add_category_dialog_add_category_dialog_component__WEBPACK_IMPORTED_MODULE_3__["AddCategoryDialogComponent"]);
@@ -3421,7 +3426,7 @@ var CategoriesComponent = /** @class */ (function () {
             });
             _this.getCategories();
         }, function (error) {
-            _this.snackBar.open("An error occurred...", "", {
+            _this.snackBar.open("An error occurred: " + error.error, "", {
                 duration: 2000,
             });
         });
@@ -3862,7 +3867,12 @@ var MaterialsComponent = /** @class */ (function () {
     MaterialsComponent.prototype.ngOnInit = function () { this.getMaterials(); };
     MaterialsComponent.prototype.getMaterials = function () {
         var _this = this;
-        this.materialSrv.getMaterials().subscribe(function (data) { _this.dataSource = data; });
+        this.materialSrv.getMaterials().subscribe(function (data) { _this.dataSource = data; }, function (error) {
+            _this.snackBar.open("An error occurred while trying to materials: " +
+                error.error, "", {
+                duration: 2000,
+            });
+        });
     };
     MaterialsComponent.prototype.addMaterial = function () {
         this.materialDialogRef = this.dialog.open(_add_material_dialog_add_material_dialog_component__WEBPACK_IMPORTED_MODULE_3__["AddMaterialDialogComponent"]);
@@ -3878,8 +3888,8 @@ var MaterialsComponent = /** @class */ (function () {
             });
             _this.getMaterials();
         }, function (error) {
-            _this.snackBar.open("An error occurred...", "", {
-                duration: 1500,
+            _this.snackBar.open("An error occurred: " + error.error, "", {
+                duration: 2000,
             });
         });
     };
@@ -4130,7 +4140,12 @@ var ProductsComponent = /** @class */ (function () {
     ProductsComponent.prototype.ngOnInit = function () { this.getProducts(); };
     ProductsComponent.prototype.getProducts = function () {
         var _this = this;
-        this.productSrv.getProducts().subscribe(function (data) { _this.dataSource = data; });
+        this.productSrv.getProducts().subscribe(function (data) { _this.dataSource = data; }, function (error) {
+            _this.snackBar.open("An error occurred while trying to products: " +
+                error.error, "", {
+                duration: 2000,
+            });
+        });
     };
     ProductsComponent.prototype.addProduct = function () {
         this.productDialogRef = this.dialog.open(_add_product_dialog_add_product_dialog_component__WEBPACK_IMPORTED_MODULE_3__["AddProductDialogComponent"]);
@@ -4148,7 +4163,7 @@ var ProductsComponent = /** @class */ (function () {
             });
             _this.getProducts();
         }, function (error) {
-            _this.snackBar.open("An error occurred...", "", {
+            _this.snackBar.open("An error occurred: " + error.error, "", {
                 duration: 2000,
             });
         });
@@ -4510,7 +4525,7 @@ var SurfaceFinishesComponent = /** @class */ (function () {
             });
             _this.getSurfaceFinishes();
         }, function (error) {
-            _this.snackBar.open("An error occurred...", "", {
+            _this.snackBar.open("An error occurred: " + error.error, "", {
                 duration: 2000,
             });
         });

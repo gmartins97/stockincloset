@@ -60,7 +60,7 @@ export class SurfaceFinishesComponent implements OnInit {
           this.getSurfaceFinishes();
         },
         error => {
-          this.snackBar.open("An error occurred...", "", {
+          this.snackBar.open("An error occurred: " + error.error, "", {
             duration : 2000,
           });
         });

@@ -28,7 +28,14 @@ export class ProductsComponent implements OnInit {
 
   private getProducts(): void {
     this.productSrv.getProducts().subscribe(
-        data => { this.dataSource = data; });
+        data => { this.dataSource = data; },
+        error => {
+          this.snackBar.open("An error occurred while trying to products: " +
+                                 error.error,
+                             "", {
+                               duration : 2000,
+                             });
+        });
   }
 
   addProduct() {
@@ -50,7 +57,7 @@ export class ProductsComponent implements OnInit {
           this.getProducts();
         },
         error => {
-          this.snackBar.open("An error occurred...", "", {
+          this.snackBar.open("An error occurred: " + error.error, "", {
             duration : 2000,
           });
         });

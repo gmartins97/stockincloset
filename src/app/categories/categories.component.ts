@@ -29,7 +29,14 @@ export class CategoriesComponent implements OnInit {
 
   getCategories() {
     this.categorySrv.getCategories().subscribe(
-        data => { this.dataSource = data; });
+        data => { this.dataSource = data; },
+        error => {
+          this.snackBar.open("An error occurred while trying to categories: " +
+                                 error.error,
+                             "", {
+                               duration : 2000,
+                             });
+        });
   }
 
   addCategory(): void {
@@ -50,7 +57,7 @@ export class CategoriesComponent implements OnInit {
           this.getCategories();
         },
         error => {
-          this.snackBar.open("An error occurred...", "", {
+          this.snackBar.open("An error occurred: " + error.error, "", {
             duration : 2000,
           });
         });

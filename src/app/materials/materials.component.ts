@@ -29,7 +29,14 @@ export class MaterialsComponent implements OnInit {
 
   private getMaterials() {
     this.materialSrv.getMaterials().subscribe(
-        data => { this.dataSource = data; });
+        data => { this.dataSource = data; },
+        error => {
+          this.snackBar.open("An error occurred while trying to materials: " +
+                                 error.error,
+                             "", {
+                               duration : 2000,
+                             });
+        });
   }
 
   addMaterial(): void {
@@ -49,8 +56,8 @@ export class MaterialsComponent implements OnInit {
           this.getMaterials();
         },
         error => {
-          this.snackBar.open("An error occurred...", "", {
-            duration : 1500,
+          this.snackBar.open("An error occurred: " + error.error, "", {
+            duration : 2000,
           });
         });
   }
