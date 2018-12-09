@@ -28,6 +28,10 @@ export class AddSurfaceFinishDialogComponent implements OnInit {
                                  duration : 2000,
                                });
             this.surfaceFinishName = "";
+          },
+          error => {
+            this.snackBar.open("An error occurred: " + error.error, "",
+                               {duration : 1500});
           });
     } else {
       this.snackBar.open("Surface finish's name can't be empty", "", {

@@ -15,6 +15,11 @@
     <mat-option *ngFor="let surfaceFinish of surfaceFinishList" [value]="surfaceFinish">{{surfaceFinish.name}}</mat-option>
   </mat-select>
 </mat-form-field>
+<mat-form-field>
+  <mat-select ngDefaultControl [(ngModel)]="selectedParts" placeholder="Choose parts" multiple>
+    <mat-option *ngFor="let product of productList" [value]="product">{{product.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
 
   <mat-form-field>
     <input matInput [(ngModel)]="chosenWidth" placeholder="Width" required>

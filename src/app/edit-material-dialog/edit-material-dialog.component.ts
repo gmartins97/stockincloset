@@ -36,11 +36,8 @@ export class EditMaterialDialogComponent implements OnInit {
                   duration : 1500,
                 });
               },
-              error => {
-                this.snackBar.open("An error occurred...", "", {
-                  duration : 2000,
-                });
-              });
+              error => {this.snackBar.open("An error occurred: " + error.error,
+                                           "", {duration : 1500})});
     } else {
       this.snackBar.open("All fields must be fulfilled", "", {
         duration : 1500,

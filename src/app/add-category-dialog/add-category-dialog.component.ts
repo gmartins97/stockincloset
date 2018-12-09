@@ -30,13 +30,17 @@ export class AddCategoryDialogComponent implements OnInit {
     let parentCatDesc = this.selectedParentCategoryDescription;
     if (catDesc) {
       this.categorySrv.createCategory(catDesc, parentCatDesc)
-          .subscribe(category => {
-            this.snackBar.open(
-                category.description + " category created successfully", "", {
-                  duration : 2000,
-                });
-            this.categoryDescription = "";
-          });
+          .subscribe(
+              category => {
+                this.snackBar.open(category.description +
+                                       " category created successfully",
+                                   "", {
+                                     duration : 2000,
+                                   });
+                this.categoryDescription = "";
+              },
+              error => {this.snackBar.open("An error occurred: " + error.error,
+                                           "", {duration : 1500})});
     } else {
       this.snackBar.open("Category's description can't be empty", "", {
         duration : 1500,

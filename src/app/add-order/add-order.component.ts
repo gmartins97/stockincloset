@@ -20,6 +20,7 @@ export class AddOrderComponent implements OnInit {
   productList: Product[];
   materialList: Material[];
   selectedProduct: Product;
+  selectedParts: Product[];
   selectedMaterial: Material;
   selectedSurfaceFinish: SurfaceFinish;
   surfaceFinishList: SurfaceFinish[];
@@ -59,6 +60,10 @@ export class AddOrderComponent implements OnInit {
   }
 
   createOrder() {
+    let itemsNames = new Array();
+    for (let i = 0; i < this.selectedParts.length; i++) {
+      itemsNames.push(this.selectedParts[i].name);
+    }
     let item: Item = {
       name : this.selectedProduct.name,
       material : this.selectedMaterial.name,
@@ -66,7 +71,7 @@ export class AddOrderComponent implements OnInit {
       width : this.chosenWidth,
       height : this.chosenHeight,
       depth : this.chosenDepth,
-      items : []
+      items : itemsNames
     };
     let items: Item[] = [ item ];
     let order: Order = {items : items};

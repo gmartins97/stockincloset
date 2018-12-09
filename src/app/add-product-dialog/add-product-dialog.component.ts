@@ -90,11 +90,12 @@ export class AddProductDialogComponent implements OnInit {
                        dimensions, this.selectedPartsNames,
                        this.selectedMaterialsNames, this.minOccupancyPerc,
                        this.maxOccupancyPerc)
-        .subscribe(prod => {this.snackBar.open(
-                       prod.name + " product created successfully", "", {
-                         duration : 2000,
-                       })},
-                   error => {this.snackBar.open("An error occurred...", "",
-                                                {duration : 1500})});
+        .subscribe(
+            prod => {this.snackBar.open(
+                prod.name + " product created successfully", "", {
+                  duration : 2000,
+                })},
+            error => {this.snackBar.open("An error occurred: " + error.error,
+                                         "", {duration : 1500})});
   }
 }

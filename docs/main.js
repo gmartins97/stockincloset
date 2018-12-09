@@ -2731,10 +2731,13 @@ var AddCategoryDialogComponent = /** @class */ (function () {
         if (catDesc) {
             this.categorySrv.createCategory(catDesc, parentCatDesc)
                 .subscribe(function (category) {
-                _this.snackBar.open(category.description + " category created successfully", "", {
+                _this.snackBar.open(category.description +
+                    " category created successfully", "", {
                     duration: 2000,
                 });
                 _this.categoryDescription = "";
+            }, function (error) {
+                _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
             });
         }
         else {
@@ -2823,6 +2826,8 @@ var AddMaterialDialogComponent = /** @class */ (function () {
                     duration: 2000,
                 });
                 _this.materialName = "";
+            }, function (error) {
+                _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
             });
         }
         else {
@@ -2866,7 +2871,7 @@ module.exports = "/*@import url('../../css/bootstrap.min.css'); */\r\n.example-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 style=\"text-align: center\"><b>PLACE A NEW ORDER</b></h2>\n<div class=\"example-container\">\n  <mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedProduct\" placeholder=\"Choose product\" required>\n    <mat-option *ngFor=\"let product of productList\" [value]=\"product\">{{product.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedMaterial\" placeholder=\"Choose material\" required>\n    <mat-option *ngFor=\"let material of materialList\" [value]=\"material\">{{material.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedSurfaceFinish\" placeholder=\"Choose surface finish\" required>\n    <mat-option *ngFor=\"let surfaceFinish of surfaceFinishList\" [value]=\"surfaceFinish\">{{surfaceFinish.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenWidth\" placeholder=\"Width\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenHeight\" placeholder=\"Height\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenDepth\" placeholder=\"Depth\" required>\n  </mat-form-field>\n\n  <div class=\"sic-row\">\n    <div class=\"sic-column\">\n      <button mat-raised-button color=\"primary\" (click)=\"createOrder()\">Confirm</button>\n    </div>\n    <div class=\"sic-column\">\n      <button mat-raised-button (click)=\"back()\">Back</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<h2 style=\"text-align: center\"><b>PLACE A NEW ORDER</b></h2>\n<div class=\"example-container\">\n  <mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedProduct\" placeholder=\"Choose product\" required>\n    <mat-option *ngFor=\"let product of productList\" [value]=\"product\">{{product.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedMaterial\" placeholder=\"Choose material\" required>\n    <mat-option *ngFor=\"let material of materialList\" [value]=\"material\">{{material.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedSurfaceFinish\" placeholder=\"Choose surface finish\" required>\n    <mat-option *ngFor=\"let surfaceFinish of surfaceFinishList\" [value]=\"surfaceFinish\">{{surfaceFinish.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n<mat-form-field>\n  <mat-select ngDefaultControl [(ngModel)]=\"selectedParts\" placeholder=\"Choose parts\" multiple>\n    <mat-option *ngFor=\"let product of productList\" [value]=\"product\">{{product.name}}</mat-option>\n  </mat-select>\n</mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenWidth\" placeholder=\"Width\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenHeight\" placeholder=\"Height\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"chosenDepth\" placeholder=\"Depth\" required>\n  </mat-form-field>\n\n  <div class=\"sic-row\">\n    <div class=\"sic-column\">\n      <button mat-raised-button color=\"primary\" (click)=\"createOrder()\">Confirm</button>\n    </div>\n    <div class=\"sic-column\">\n      <button mat-raised-button (click)=\"back()\">Back</button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2936,6 +2941,10 @@ var AddOrderComponent = /** @class */ (function () {
     };
     AddOrderComponent.prototype.createOrder = function () {
         var _this = this;
+        var itemsNames = new Array();
+        for (var i = 0; i < this.selectedParts.length; i++) {
+            itemsNames.push(this.selectedParts[i].name);
+        }
         var item = {
             name: this.selectedProduct.name,
             material: this.selectedMaterial.name,
@@ -2943,7 +2952,7 @@ var AddOrderComponent = /** @class */ (function () {
             width: this.chosenWidth,
             height: this.chosenHeight,
             depth: this.chosenDepth,
-            items: []
+            items: itemsNames
         };
         var items = [item];
         var order = { items: items };
@@ -3065,7 +3074,7 @@ var AddProductDialogComponent = /** @class */ (function () {
                 duration: 2000,
             });
         }, function (error) {
-            _this.snackBar.open("An error occurred...", "", { duration: 1500 });
+            _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
         });
     };
     AddProductDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3142,6 +3151,8 @@ var AddSurfaceFinishDialogComponent = /** @class */ (function () {
                     duration: 2000,
                 });
                 _this.surfaceFinishName = "";
+            }, function (error) {
+                _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
             });
         }
         else {
@@ -3491,9 +3502,7 @@ var EditCategoryDialogComponent = /** @class */ (function () {
                     duration: 2000,
                 });
             }, function (error) {
-                _this.snackBar.open("An error occurred...", "", {
-                    duration: 1500,
-                });
+                _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
             });
         }
         else {
@@ -3579,9 +3588,7 @@ var EditMaterialDialogComponent = /** @class */ (function () {
                     duration: 1500,
                 });
             }, function (error) {
-                _this.snackBar.open("An error occurred...", "", {
-                    duration: 2000,
-                });
+                _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
             });
         }
         else {
@@ -3666,9 +3673,7 @@ var EditSurfaceFinishDialogComponent = /** @class */ (function () {
                     duration: 1500,
                 });
             }, function (error) {
-                _this.snackBar.open("An error occurred...", "", {
-                    duration: 2000,
-                });
+                _this.snackBar.open("An error occurred: " + error.error, "", { duration: 1500 });
             });
         }
         else {

@@ -31,13 +31,16 @@ export class AddMaterialDialogComponent implements OnInit {
     if (matName && this.selectedSurfaceFinishesNames.length > 0) {
       this.materialSrv
           .createMaterial(matName, this.selectedSurfaceFinishesNames)
-          .subscribe(material => {
-            this.snackBar.open(material.name + " material created successfully",
-                               "", {
-                                 duration : 2000,
-                               });
-            this.materialName = "";
-          });
+          .subscribe(
+              material => {
+                this.snackBar.open(
+                    material.name + " material created successfully", "", {
+                      duration : 2000,
+                    });
+                this.materialName = "";
+              },
+              error => {this.snackBar.open("An error occurred: " + error.error,
+                                           "", {duration : 1500})});
     } else {
       this.snackBar.open("Material's name and surface finishes can't be empty",
                          "", {

@@ -33,9 +33,8 @@ export class EditSurfaceFinishDialogComponent implements OnInit {
                 });
               },
               error => {
-                this.snackBar.open("An error occurred...", "", {
-                  duration : 2000,
-                });
+                this.snackBar.open("An error occurred: " + error.error, "",
+                                   {duration : 1500});
               });
     } else {
       this.snackBar.open("Surface Finish's name can't be empty", "", {
