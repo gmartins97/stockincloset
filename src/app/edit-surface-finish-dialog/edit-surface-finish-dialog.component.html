@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Edit Surface Finish</h1>
 <div class="edit-surface-finish-dialog-container">
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedSurfaceFinishId" placeholder="Surface Finishes" required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedSurfaceFinishId" placeholder="Surface Finishes" required>
     <mat-option *ngFor="let surfaceFinish of surfaceFinishList" [value]="surfaceFinish.id">{{surfaceFinish.name}}</mat-option>
   </mat-select>
 </mat-form-field>

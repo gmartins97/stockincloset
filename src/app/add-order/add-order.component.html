@@ -1,17 +1,17 @@
 <h2 style="text-align: center"><b>PLACE A NEW ORDER</b></h2>
 <div class="example-container">
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedProduct" placeholder="Choose product" required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedProduct" placeholder="Choose product" required>
     <mat-option *ngFor="let product of productList" [value]="product">{{product.name}}</mat-option>
   </mat-select>
 </mat-form-field>
 <mat-form-field>
-  <mat-select [(ngModel)]="selectedMaterialName" placeholder="Choose material" required>
-    <mat-option *ngFor="let materialName of selectedProduct.materialNames" [value]="materialName">{{materialName}}</mat-option>
+  <mat-select ngDefaultControl [(ngModel)]="selectedMaterial" placeholder="Choose material" required>
+    <mat-option *ngFor="let material of materialList" [value]="material">{{material.name}}</mat-option>
   </mat-select>
 </mat-form-field>
 <mat-form-field>
-  <mat-select [(ngModel)]="selectedSurfaceFinish" placeholder="Choose surface finish" required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedSurfaceFinish" placeholder="Choose surface finish" required>
     <mat-option *ngFor="let surfaceFinish of surfaceFinishList" [value]="surfaceFinish">{{surfaceFinish.name}}</mat-option>
   </mat-select>
 </mat-form-field>

@@ -5,7 +5,7 @@
   </mat-form-field>
 
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedSurfaceFinishesNames" placeholder="Surface Finishes" multiple required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedSurfaceFinishesNames" placeholder="Surface Finishes" multiple required>
     <mat-option *ngFor="let surfaceFinish of surfaceFinishList" [value]="surfaceFinish.name">{{surfaceFinish.name}}</mat-option>
   </mat-select>
 </mat-form-field>

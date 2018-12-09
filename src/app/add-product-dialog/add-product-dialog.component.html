@@ -44,19 +44,19 @@
   </mat-form-field>
   <h4><b>Parts</b></h4>
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedPartsNames" placeholder="Parts" multiple>
+  <mat-select ngDefaultControl [(ngModel)]="selectedPartsNames" placeholder="Parts" multiple>
     <mat-option *ngFor="let product of productList" [value]="product.name">{{product.name}}</mat-option>
   </mat-select>
 </mat-form-field>
   <h4><b>Category</b></h4>
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedCategoryDescription" placeholder="Category" required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedCategoryDescription" placeholder="Category" required>
     <mat-option *ngFor="let category of categoryList" [value]="category.description">{{category.description}}</mat-option>
   </mat-select>
 </mat-form-field>
   <h4><b>Materials</b></h4>
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedMaterialsNames" placeholder="Materials" multiple required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedMaterialsNames" placeholder="Materials" multiple required>
     <mat-option *ngFor="let material of materialList" [value]="material.name">{{material.name}}</mat-option>
   </mat-select>
 </mat-form-field>

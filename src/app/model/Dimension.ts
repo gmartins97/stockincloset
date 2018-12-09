@@ -1,4 +1,4 @@
-export interface Dimension {
+export class Dimension {
   discrete?: number;
   min?: number;
   max?: number;

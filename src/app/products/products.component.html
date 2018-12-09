@@ -23,8 +23,8 @@
 
     <!-- Dimensions Column -->
     <ng-container matColumnDef="dimensions">
-      <th mat-header-cell *matHeaderCellDef> Dimensions (W, H, D) </th>
-      <td mat-cell *matCellDef="let product"> {{product.dimensions}} </td>
+      <th mat-header-cell *matHeaderCellDef> Dimensions (Width x Height x Depth / cm) </th>
+      <td mat-cell *matCellDef="let product"> Discrete: ({{product.dimensions.width.discrete}}x{{product.dimensions.height.discrete}}x{{product.dimensions.depth.discrete}})<br> Continuous: ([{{product.dimensions.width.min}},{{product.dimensions.width.max}}]x[{{product.dimensions.height.min}},{{product.dimensions.height.max}}]x[{{product.dimensions.depth.min}},{{product.dimensions.depth.max}}]) </td>
     </ng-container>
 
     <!-- Parts Column -->

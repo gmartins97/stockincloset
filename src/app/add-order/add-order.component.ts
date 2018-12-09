@@ -20,7 +20,7 @@ export class AddOrderComponent implements OnInit {
   productList: Product[];
   materialList: Material[];
   selectedProduct: Product;
-  selectedMaterialName: string;
+  selectedMaterial: Material;
   selectedSurfaceFinish: SurfaceFinish;
   surfaceFinishList: SurfaceFinish[];
   chosenWidth = 1;
@@ -33,6 +33,7 @@ export class AddOrderComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+    this.getMaterials();
     this.getSurfaceFinishes();
   }
 
@@ -40,7 +41,13 @@ export class AddOrderComponent implements OnInit {
     this.productSrv.getProducts().subscribe(prods => {
       this.productList = prods;
       this.selectedProduct = this.productList[0];
-      this.selectedMaterialName = this.selectedProduct.materialNames[0];
+    });
+  }
+
+  private getMaterials() {
+    this.materialSrv.getMaterials().subscribe(mats => {
+      this.materialList = mats;
+      this.selectedMaterial = this.materialList[0];
     });
   }
 
@@ -54,7 +61,7 @@ export class AddOrderComponent implements OnInit {
   createOrder() {
     let item: Item = {
       name : this.selectedProduct.name,
-      material : this.selectedMaterialName,
+      material : this.selectedMaterial.name,
       surfacefinish : this.selectedSurfaceFinish.name,
       width : this.chosenWidth,
       height : this.chosenHeight,

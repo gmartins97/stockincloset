@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Edit Material</h1>
 <div class="edit-material-dialog-container">
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedMaterialId" placeholder="Materials" required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedMaterialId" placeholder="Materials" required>
     <mat-option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</mat-option>
   </mat-select>
 </mat-form-field>
@@ -11,7 +11,7 @@
   </mat-form-field>
 
   <mat-form-field>
-  <mat-select [(ngModel)]="selectedSurfaceFinishesNames" placeholder="New surface finishes" multiple required>
+  <mat-select ngDefaultControl [(ngModel)]="selectedSurfaceFinishesNames" placeholder="New surface finishes" multiple required>
     <mat-option *ngFor="let material of materialList; let in = index" [value]="material.surfaceFinishNames[in]">{{material.surfaceFinishNames[in]}}</mat-option>
   </mat-select>
 </mat-form-field>

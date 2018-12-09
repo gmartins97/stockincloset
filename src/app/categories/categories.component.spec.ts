@@ -1,16 +1,32 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule} from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatSnackBar,
+  MatSnackBarModule,
+  MatTableModule
+} from '@angular/material';
 
-import { CategoriesComponent } from './categories.component';
+import {CategoriesComponent} from './categories.component';
 
 describe('CategoriesComponent', () => {
   let component: CategoriesComponent;
   let fixture: ComponentFixture<CategoriesComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CategoriesComponent ]
-    })
-    .compileComponents();
+    TestBed
+        .configureTestingModule({
+          imports : [
+            FormsModule, HttpClientModule, MatSnackBarModule, MatTableModule,
+            MatDialogModule
+          ],
+          declarations : [ CategoriesComponent ],
+          schemas : [ CUSTOM_ELEMENTS_SCHEMA ]
+        })
+        .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +35,5 @@ describe('CategoriesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => { expect(component).toBeTruthy(); });
 });

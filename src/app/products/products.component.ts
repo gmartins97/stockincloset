@@ -35,7 +35,11 @@ export class ProductsComponent implements OnInit {
     this.productDialogRef = this.dialog.open(AddProductDialogComponent);
   }
 
-  editProduct() {}
+  editProduct() {
+    this.snackBar.open("Not implemented", "", {
+      duration : 3000,
+    });
+  }
 
   deleteProduct(id: number) {
     this.productSrv.deleteProduct(id).subscribe(
